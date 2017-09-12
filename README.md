@@ -140,6 +140,7 @@ will ignore requests from bots (the code inside the block is just pseudo-code).
 As mentioned, skipping Geo-redirection is done either by:
 
 * `redirect=1` to force a new domain and remember it in the user's session variable.
+* `redirect=1&country=uk` to force redirect to a new domain and remember it in the user's session variable.
 * `skip_geo=true` for a one-time force (with no memory).
 
 If the `:remember_when_skipping` option flag is set to true, the server will

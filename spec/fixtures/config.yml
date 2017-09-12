@@ -6,6 +6,10 @@
   :host: 'biz.waze.co.il'
   :countries: ['IL']
 
+:uk:
+  :host: 'biz.waze.co.uk'
+  :countries: ['UK']
+
 :world: &default
   :host: 'biz.world.waze.com'
 

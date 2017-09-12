@@ -215,6 +215,19 @@ describe GeoRedirect::Middleware do
       it { is_expected.to remember_country 'US' }
     end
 
+    context 'with forced redirect to specific host' do
+      let(:country_code) { 'US' }
+      let(:request_args) { { redirect: 1, country: 'uk' } }
+
+      it { is_expected.to redirect_to :uk }
+      it 'rewrites the flag out' do
+        expect(response.headers['Location']).not_to include('redirect=1')
+      end
+
+      it { is_expected.to remember :uk }
+      it { is_expected.to remember_country nil }
+    end
+
     context 'with forced redirect flag' do
       let(:country_code) { 'US' }
       let(:request_args) { { redirect: 1 } }

@@ -89,8 +89,16 @@ module GeoRedirect
 
     def handle_force(request, url)
       log 'Handling force flag'
-      remember_host(request, request_host(url))
-      redirect_request(request, url.host, true)
+
+      if Rack::Utils.parse_query(url.query).key? 'country'
+        country = Rack::Utils.parse_query(url.query)['country']
+        host = host_by_country(country.upcase)
+      else 
+        host = request_host(url)
+      end
+
+      remember_host(request, host)
+      redirect_request(request, host, true)
     end
 
     def handle_geoip(request)
